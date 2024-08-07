@@ -1,0 +1,17 @@
+apiVersion: devices.devices.dcncompany.com/v1alpha1
+kind: DeviceConfiguration
+metadata:
+  labels:
+    app.kubernetes.io/name: deviceconfiguration
+    app.kubernetes.io/instance: deviceconfiguration-sample
+    app.kubernetes.io/part-of: mkoperator
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: mkoperator
+  name: deviceconfiguration-sample
+spec:
+  algorithmName: "ClientCPUBasedAlgorithm"  # 분할 지점 결정 알고리즘의 이름
+  modelName: "AlexNet"  # 분할 컴퓨팅에 사용될 모델 이름
+  clientClusters:  # 이 구성에 포함된 클라이언트 클러스터 목록
+    - "cluster-a"
+    - "cluster-b"
+    - "cluster-c"

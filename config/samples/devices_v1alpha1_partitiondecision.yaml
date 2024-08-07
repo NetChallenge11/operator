@@ -1,0 +1,12 @@
+apiVersion: devices.devices.dcncompany.com/v1alpha1
+kind: PartitionDecision
+metadata:
+  labels:
+    app.kubernetes.io/name: partitiondecision
+    app.kubernetes.io/instance: partitiondecision-sample
+    app.kubernetes.io/part-of: mkoperator
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: mkoperator
+  name: partitiondecision-sample
+spec:
+  # TODO(user): Add fields here

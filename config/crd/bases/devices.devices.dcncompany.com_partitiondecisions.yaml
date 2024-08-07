@@ -1,0 +1,86 @@
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.13.0
+  name: partitiondecisions.devices.devices.dcncompany.com
+spec:
+  group: devices.devices.dcncompany.com
+  names:
+    kind: PartitionDecision
+    listKind: PartitionDecisionList
+    plural: partitiondecisions
+    singular: partitiondecision
+  scope: Namespaced
+  versions:
+  - name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        description: PartitionDecision is the Schema for the partitiondecisions API
+        properties:
+          apiVersion:
+            description: 'APIVersion defines the versioned schema of this representation
+              of an object. Servers should convert recognized schemas to the latest
+              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            type: string
+          kind:
+            description: 'Kind is a string value representing the REST resource this
+              object represents. Servers may infer this from the endpoint the client
+              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            type: string
+          metadata:
+            type: object
+          spec:
+            description: PartitionDecisionSpec defines the desired state of PartitionDecision
+            properties:
+              algorithmName:
+                description: AlgorithmName specifies the name of the partition decision
+                  algorithm
+                type: string
+              channelName:
+                description: ChannelName specifies the event channel used for notifications
+                type: string
+              clientClusterName:
+                description: ClientClusterName is a list of client cluster names targeted
+                  by this partition decision
+                items:
+                  type: string
+                type: array
+              metricTypes:
+                description: MetricTypes specifies the types of metrics used in partition
+                  computing
+                type: string
+              modelName:
+                description: ModelName specifies the name of the model used for partition
+                  computing
+                type: string
+            required:
+            - algorithmName
+            - channelName
+            - clientClusterName
+            - metricTypes
+            - modelName
+            type: object
+          status:
+            description: PartitionDecisionStatus defines the observed state of PartitionDecision
+            properties:
+              currentPhase:
+                description: CurrentPhase describes the current phase of the PartitionDecision
+                type: string
+              lastUpdated:
+                description: LastUpdated provides the timestamp of the last status
+                  update
+                format: date-time
+                type: string
+              ready:
+                description: Ready indicates whether the PartitionDecision is ready
+                type: boolean
+            required:
+            - ready
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}

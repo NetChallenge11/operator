@@ -1,0 +1,27 @@
+# permissions for end users to view deviceconfigurations.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: deviceconfiguration-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: mkoperator
+    app.kubernetes.io/part-of: mkoperator
+    app.kubernetes.io/managed-by: kustomize
+  name: deviceconfiguration-viewer-role
+rules:
+- apiGroups:
+  - devices.devices.dcncompany.com
+  resources:
+  - deviceconfigurations
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - devices.devices.dcncompany.com
+  resources:
+  - deviceconfigurations/status
+  verbs:
+  - get
